@@ -1,0 +1,93 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "webextensions": true
+    },
+    "extends": "eslint:recommended",
+    "plugins": ["no-unsanitized"],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": [
+            "warn",
+            4,
+            { "SwitchCase": 1 }
+        ],
+        "no-warning-comments": [
+            "warn"
+        ],
+        "no-console": [
+            "warn"
+        ],
+        "no-debugger": [
+            "error"
+        ],
+        "no-alert": [
+            "error"
+        ],
+        "quotes": [
+            "error",
+            "double"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "prefer-const": ["error", {
+            "destructuring": "any",
+            "ignoreReadBeforeAssign": false
+        }],
+        "eqeqeq": [
+            "error",
+            "smart"
+        ],
+        "eol-last": [
+            "warn",
+            "always"
+        ],
+        "no-restricted-syntax": [
+            "error",
+            {
+              "selector": "FunctionDeclaration[async=false][id.name=/Async$/]",
+              "message": "Function ending in 'Async' must be declared async"
+            },
+            {
+              "selector": "FunctionDeclaration[async=true][id.name!=/Async$/]",
+              "message": "Async function name must end in 'Async'"
+            },
+            {
+              "selector": "MethodDefinition[value.async=false][key.name=/Async$/]",
+              "message": "Method ending in 'Async' must be declared async"
+            },
+            {
+              "selector": "MethodDefinition[value.async=true][key.name!=/Async$/]",
+              "message": "Async method name must end in 'Async'"
+            },
+            {
+              "selector": "Property[value.type=/FunctionExpression$/][value.async=false][key.name=/Async$/]",
+              "message": "Function ending in 'Async' must be declared async"
+            },
+            {
+              "selector": "Property[value.type=/FunctionExpression$/][value.async=true][key.name!=/Async$/]",
+              "message": "Async function name must end in 'Async'"
+            },
+            {
+              "selector": "VariableDeclarator[init.type=/FunctionExpression$/][init.async=false][id.name=/Async$/]",
+              "message": "Function ending in 'Async' must be declared async"
+            },
+            {
+              "selector": "VariableDeclarator[init.type=/FunctionExpression$/][init.async=true][id.name!=/Async$/]",
+              "message": "Async function name must end in 'Async'"
+            }
+        ],
+        "no-unsanitized/method": "error",
+        "no-unsanitized/property": "error"
+    }
+}

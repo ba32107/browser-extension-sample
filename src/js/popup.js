@@ -1,17 +1,9 @@
 const browser = require("webextension-polyfill");
-// var logger = require('./logger.js')
-// const getLogger = require('webpack-log');
-// const log = getLogger({ name: 'webpack-batman', level: 'debug' });
-
-const log = require("loglevel").getLogger("popup");
+const log = require("./logger.js").log;
 
 window.myButton.onclick = function () {
-    // log.setLevel("error");
-    // log.debug("hello info");
-    log.info('INFO Jingle Bells, Batman Smells');
-log.warn('WARN Robin laid an egg');
-log.error('ERROR The Batmobile lost a wheel');
-log.debug('DEBUG And the Joker got away');
+    log.info("Button clicked");
+
     browser.notifications.create(null, {
         type: "basic",
         iconUrl: "icon32.png",

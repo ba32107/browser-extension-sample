@@ -8,7 +8,8 @@
     "plugins": ["no-unsanitized"],
     "globals": {
         "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+        "SharedArrayBuffer": "readonly",
+        "LOG_LEVEL": "readonly"
     },
     "parserOptions": {
         "ecmaVersion": 2018,

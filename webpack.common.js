@@ -20,6 +20,9 @@ module.exports = {
         extensions: ['.js'],
     },
     plugins: [
+        new webpack.DefinePlugin({
+            LOG_LEVEL: JSON.stringify(isProduction ? "silent" : "debug"),
+        }),
         new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, "src", "html", "popup.html"),
@@ -44,9 +47,9 @@ module.exports = {
         }),
         new webpack.ProvidePlugin({
             process: 'process/browser',
-          }),
+        }),
         new ESLintPlugin({
-            failOnError: false//isProduction
+            failOnError: isProduction
         }),
     ],
 };

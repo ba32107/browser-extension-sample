@@ -14,8 +14,10 @@
   },
   "homepage": "https://github.com/ba32107/browser-extension-sample",
   "scripts": {
-    "dev": "webpack --node-env development --watch --config webpack.dev.js",
-    "dist": "webpack --node-env production --config webpack.prod.js"
+    "dev": "webpack --node-env development --watch",
+    "dev-ff": "webpack --node-env development --watch --env BROWSER_MANIFEST=firefox & web-ext run --source-dir dist",
+    "dist": "webpack --node-env production",
+    "dist-ff": "webpack --node-env production --env BROWSER_MANIFEST=firefox"
   },
   "dependencies": {
     "webextension-polyfill": "^0.8.0"
@@ -29,6 +31,7 @@
     "html-webpack-plugin": "^5.4.0",
     "javascript-obfuscator": "^2.19.1",
     "loglevel": "^1.7.1",
+    "web-ext": "^6.5.0",
     "webpack": "^5.58.2",
     "webpack-cli": "^4.9.0",
     "webpack-log": "^3.0.2",

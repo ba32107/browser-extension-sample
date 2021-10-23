@@ -14,8 +14,8 @@
   },
   "homepage": "https://github.com/ba32107/browser-extension-sample",
   "scripts": {
-    "start": "webpack --node-env development --watch --config webpack.dev.js",
-    "build": "webpack --node-env production --config webpack.prod.js"
+    "dev": "webpack --node-env development --watch --config webpack.dev.js",
+    "dist": "webpack --node-env production --config webpack.prod.js"
   },
   "dependencies": {
     "webextension-polyfill": "^0.8.0"

@@ -1,13 +1,13 @@
-const webpack = require('webpack')
-const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WebpackObfuscator = require('webpack-obfuscator');
-const ESLintPlugin = require('eslint-webpack-plugin');
+const webpack = require("webpack")
+const path = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const WebpackObfuscator = require("webpack-obfuscator");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = function (env) {
-    const isProduction = process.env.NODE_ENV === 'production';
+    const isProduction = process.env.NODE_ENV === "production";
 
     const plugins = [
         new webpack.DefinePlugin({
@@ -50,7 +50,7 @@ module.exports = function (env) {
             ],
         }),
         new webpack.ProvidePlugin({
-            process: 'process/browser',
+            process: "process/browser",
         }),
         new ESLintPlugin({
             failOnError: isProduction
@@ -72,11 +72,11 @@ module.exports = function (env) {
             contentScript: path.join(__dirname, "src", "js", "contentScript.js"),
         },
         output: {
-            filename: '[name].js',
-            path: path.resolve(__dirname, 'dist')
+            filename: "[name].js",
+            path: path.resolve(__dirname, "dist")
         },
         resolve: {
-            extensions: ['.js'],
+            extensions: [".js"],
         },
         plugins: plugins
     };

@@ -1,0 +1,42 @@
+{
+  "name": "browser-extension-sample-app",
+  "version": "0.0.1",
+  "description": "Description of the extension",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ba32107/browser-extension-sample.git"
+  },
+  "author": "Balazs Gyurak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ba32107/browser-extension-sample/issues/new"
+  },
+  "homepage": "https://github.com/ba32107/browser-extension-sample",
+  "scripts": {
+    "start": "webpack --node-env development --watch",
+    "start-ff": "webpack --node-env developmet --watch --env BROWSER_MANIFEST=firefox & WEBPACK_PID=$! && sleep 3 && web-ext run --source-dir=dist && kill $WEBPACK_PID",
+    "build": "webpack --node-env production",
+    "build-ff": "webpack --node-env production --env BROWSER_MANIFEST=firefox",
+    "dist": "npm run build && cd dist && zip -r extension.zip *",
+    "dist-ff": "npm run build-ff && cd dist && web-ext build"
+  },
+  "dependencies": {
+    "webextension-polyfill": "^0.8.0"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "eslint": "^8.0.0",
+    "eslint-plugin-no-unsanitized": "^3.1.5",
+    "eslint-webpack-plugin": "^3.0.1",
+    "html-webpack-plugin": "^5.4.0",
+    "javascript-obfuscator": "^2.19.1",
+    "loglevel": "^1.7.1",
+    "web-ext": "^6.5.0",
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.0",
+    "webpack-log": "^3.0.2",
+    "webpack-obfuscator": "^3.4.1"
+  }
+}

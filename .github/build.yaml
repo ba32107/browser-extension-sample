@@ -1,0 +1,22 @@
+name: Build extension
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-extension:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: npm install
+    - name: Build extension for Chrome
+      run: npm run build
+    - name: Build extension for Firefox
+      run: npm run build-ff

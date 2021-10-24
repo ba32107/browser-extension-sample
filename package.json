@@ -15,7 +15,7 @@
   "homepage": "https://github.com/ba32107/browser-extension-sample",
   "scripts": {
     "dev": "webpack --node-env development --watch",
-    "dev-ff": "webpack --node-env development --watch --env BROWSER_MANIFEST=firefox & web-ext run --source-dir dist",
+    "dev-ff": "webpack --node-env development --watch --env BROWSER_MANIFEST=firefox & WEBPACK_PID=$! && sleep 3 && web-ext run --source-dir=dist && kill $WEBPACK_PID",
     "dist": "webpack --node-env production",
     "dist-ff": "webpack --node-env production --env BROWSER_MANIFEST=firefox"
   },

@@ -7,8 +7,9 @@ Features:
  * Content script sample
  * Background event handler sample
  * Logger module
+ * Automatic versioning
  * ESLint integration
- * Webpack config
+ * Dev and build scripts for Chrome & Firefox
  * GitHub Actions workflows
 
 ## Usage

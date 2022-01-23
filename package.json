@@ -17,7 +17,7 @@
         "clean": "rm -rf ./dist && rm -rf ./tsc-out && rm -rf ./web-ext-artifacts",
         "prep-dist": "npm run clean && mkdir -p ./dist",
         "copy-assets": "cp ./src/html/* ./dist && cp ./src/images/* ./dist",
-        "prep-manifest": "extension_version=\"${EXTENSION_VERSION:-0.0.0}\"; jq --arg version \"$extension_version\" '.version=$version' ./src/manifest/base.json",
+        "prep-manifest": "extension_version=\"$(nbgv get-version --variable version)\"; jq --arg version \"$extension_version\" '.version=$version' ./src/manifest/base.json",
         "copy-manifest": "npm run --silent prep-manifest | cat - ./src/manifest/chrome.json | jq -s '.[0] * .[1]' > ./dist/manifest.json",
         "copy-manifest-ff": "npm run --silent prep-manifest | cat - ./src/manifest/firefox.json | jq -s '.[0] * .[1]' > ./dist/manifest.json",
         "lint": "eslint ./src",

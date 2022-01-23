@@ -38,6 +38,7 @@
         "eslint": "^8.7.0",
         "eslint-plugin-no-unsanitized": "^4.0.1",
         "loglevel": "^1.8.0",
+        "nerdbank-gitversioning": "^3.4.255",
         "node-jq": "^2.1.0",
         "typescript": "^4.5.5",
         "web-ext": "^6.6.0",

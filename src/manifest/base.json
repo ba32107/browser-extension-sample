@@ -1,6 +1,6 @@
 {
     "name": "Browser extension sample app",
-    "version": "placeholder",
+    "version": "__VERSION__",
     "description": "Description of the extension",
     "content_scripts": [
         {

@@ -2,6 +2,7 @@
     "manifest_version": 3,
     "permissions": [
         "notifications",
+        "storage",
         "tabs"
     ],
     "host_permissions": [

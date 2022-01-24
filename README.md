@@ -3,9 +3,7 @@
 A simple browser extension skeleton for Chrome-based browsers and Firefox.
 
 Features:
- * Popup sample
- * Content script sample
- * Background event handler sample
+ * Popup, content script, background script, and settings skeleton
  * Logger module
  * Automatic versioning
  * ESLint integration

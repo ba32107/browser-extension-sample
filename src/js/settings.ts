@@ -25,7 +25,6 @@ export async function getSettings(): Promise<ISettings> {
     }
 }
 
-
 export async function saveSettings(settings: ISettings): Promise<void> {
     await browser.storage.sync.set({ settings: settings })
 }

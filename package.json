@@ -17,11 +17,16 @@
         "clean": "rm -rf ./dist && rm -rf ./tsc-out && rm -rf ./web-ext-artifacts",
         "prep-dist": "npm run clean && mkdir -p ./dist",
         "copy-assets": "cp ./src/html/* ./dist && cp ./src/images/* ./dist",
-        "prep-manifest": "extension_version=\"$(nbgv get-version --variable NpmPackageVersion)\"; jq --arg version \"$extension_version\" '.version=$version' ./src/manifest/base.json",
+
+        "get-nbgv-var": "case $(git rev-parse --abbrev-ref HEAD) in \"main\") echo \"SimpleVersion\" ;; *) echo \"Version\" ;; esac",
+        "get-version": "nbgv get-version --variable $(npm run --silent get-nbgv-var)",
+        "prep-manifest": "extension_version=\"$(npm run --silent get-version)\"; jq --arg version \"$extension_version\" '.version=$version' ./src/manifest/base.json",
         "copy-manifest": "npm run --silent prep-manifest | cat - ./src/manifest/chrome.json | jq -s '.[0] * .[1]' > ./dist/manifest.json",
         "copy-manifest-ff": "npm run --silent prep-manifest | cat - ./src/manifest/firefox.json | jq -s '.[0] * .[1]' > ./dist/manifest.json",
+
         "lint": "eslint ./src",
         "compile": "npx tsc",
+
         "start": "npm run prep-dist && npm run copy-assets && npm run copy-manifest && esbuild --watch --bundle --sourcemap --outdir=dist --define:__PRODUCTION__=false ./src/js/background.ts ./src/js/contentScript.ts ./src/js/popup.ts",
         "start-ff": "npm run prep-dist && npm run copy-assets && npm run copy-manifest-ff && esbuild --bundle --sourcemap --outdir=dist --define:__PRODUCTION__=false ./src/js/background.ts ./src/js/contentScript.ts ./src/js/popup.ts && web-ext run --source-dir=dist",
         "build": "npm run prep-dist && npm run copy-assets && npm run copy-manifest && npm run lint && npm run compile && esbuild --bundle --minify --outdir=dist --define:__PRODUCTION__=true ./src/js/background.ts ./src/js/contentScript.ts ./src/js/popup.ts",

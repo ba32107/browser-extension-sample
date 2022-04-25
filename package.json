@@ -18,6 +18,7 @@
         "prep-dist": "npm run clean && mkdir -p ./dist",
         "copy-assets": "cp ./src/html/* ./dist && cp ./src/images/* ./dist",
 
+        "get-git-commit-hash": "git rev-parse HEAD",
         "get-nbgv-var": "case $(git rev-parse --abbrev-ref HEAD) in \"main\") echo \"SimpleVersion\" ;; *) echo \"Version\" ;; esac",
         "get-version": "nbgv get-version --variable $(npm run --silent get-nbgv-var)",
         "prep-manifest": "extension_version=\"$(npm run --silent get-version)\"; jq --arg version \"$extension_version\" '.version=$version' ./src/manifest/base.json",
@@ -27,10 +28,10 @@
         "lint": "eslint ./src",
         "compile": "npx tsc",
 
-        "start": "npm run prep-dist && npm run copy-assets && npm run copy-manifest && esbuild --watch --bundle --sourcemap --outdir=dist --define:__PRODUCTION__=false ./src/js/background.ts ./src/js/contentScript.ts ./src/js/popup.ts",
-        "start-ff": "npm run prep-dist && npm run copy-assets && npm run copy-manifest-ff && esbuild --bundle --sourcemap --outdir=dist --define:__PRODUCTION__=false ./src/js/background.ts ./src/js/contentScript.ts ./src/js/popup.ts && web-ext run --source-dir=dist",
-        "build": "npm run prep-dist && npm run copy-assets && npm run copy-manifest && npm run lint && npm run compile && esbuild --bundle --minify --outdir=dist --define:__PRODUCTION__=true ./src/js/background.ts ./src/js/contentScript.ts ./src/js/popup.ts",
-        "build-ff": "npm run prep-dist && npm run copy-assets && npm run copy-manifest-ff && npm run lint && npm run compile && esbuild --bundle --minify --outdir=dist --define:__PRODUCTION__=true ./src/js/background.ts ./src/js/contentScript.ts ./src/js/popup.ts && web-ext build --source-dir=dist",
+        "start": "npm run prep-dist && npm run copy-assets && npm run copy-manifest && esbuild --watch --bundle --sourcemap --outdir=dist --define:__PRODUCTION__=false --define:__GIT_COMMIT_HASH__=\\\"$(npm run --silent get-git-commit-hash)\\\" ./src/js/background.ts ./src/js/contentScript.ts ./src/js/popup.ts",
+        "start-ff": "npm run prep-dist && npm run copy-assets && npm run copy-manifest-ff && esbuild --bundle --sourcemap --outdir=dist --define:__PRODUCTION__=false --define:__GIT_COMMIT_HASH__=\\\"$(npm run --silent get-git-commit-hash)\\\" ./src/js/background.ts ./src/js/contentScript.ts ./src/js/popup.ts && web-ext run --source-dir=dist",
+        "build": "npm run prep-dist && npm run copy-assets && npm run copy-manifest && npm run lint && npm run compile && esbuild --bundle --minify --outdir=dist --define:__PRODUCTION__=true --define:__GIT_COMMIT_HASH__=\\\"$(npm run --silent get-git-commit-hash)\\\" ./src/js/background.ts ./src/js/contentScript.ts ./src/js/popup.ts",
+        "build-ff": "npm run prep-dist && npm run copy-assets && npm run copy-manifest-ff && npm run lint && npm run compile && esbuild --bundle --minify --outdir=dist --define:__PRODUCTION__=true --define:__GIT_COMMIT_HASH__=\\\"$(npm run --silent get-git-commit-hash)\\\" ./src/js/background.ts ./src/js/contentScript.ts ./src/js/popup.ts && web-ext build --source-dir=dist",
         "dist": "npm run build && cd dist && zip -r extension.zip *",
         "dist-ff": "npm run build-ff"
     },

@@ -1,6 +1,15 @@
 import * as browser from "webextension-polyfill"
-import logger from "./logger"
+import logger from "./logging/logger"
+import GitCommitHash from "./util/buildInfo"
+
+function startup() {
+    logger.info(`Extension started. Commit hash: ${GitCommitHash}`)
+}
 
 browser.runtime.onInstalled.addListener(() => {
-    logger.info("Extension installed")
+    startup()
+})
+
+browser.runtime.onStartup.addListener(() => {
+    startup()
 })

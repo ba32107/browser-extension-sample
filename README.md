@@ -6,7 +6,9 @@ Features:
  * Popup sample
  * Content script sample
  * Background event handler sample
+ * Loading/saving settings
  * Logger module
+ * Debug info module
  * Automatic versioning
  * ESLint integration
  * Dev and build scripts for Chrome & Firefox

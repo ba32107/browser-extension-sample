@@ -13,14 +13,17 @@ jobs:
         fetch-depth: 0
     - name: Install dependencies
       run: npm install
-    #- name: Build & package extension for Chrome
-    #  run: npm run dist
-    #- name: Release extension for Chrome
-    #  run: echo "TODO"
-    #- name: Build & package extension for Firefox
-    #  run: npm run dist-ff
-    #- name: Release extension for Firefox
-    #  run: echo "TODO"
+    - name: Build & package extension for Chrome and Firefox
+      run: |
+        mkdir -p ./release
+        npm run dist
+        cp ./dist/extension.zip ./release
+        npm run dist-ff
+        cp ./web-ext-artifacts/*.zip ./release
+    - name: Release extension for Chrome
+      run: echo "TODO"
+    - name: Release extension for Firefox
+      run: echo "TODO"
     - name: Get release version
       run: echo "RELEASE_VERSION=$(npm run --silent get-version)" >> $GITHUB_ENV
     - name: Create GitHub Release
@@ -28,3 +31,4 @@ jobs:
       with:
         tag_name: v${{ env.RELEASE_VERSION }}
         body_path: RELEASE_CHANGELOG.md
+        files: release/*.zip

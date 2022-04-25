@@ -2,7 +2,7 @@ This document describes the changes in the current release. The Release workflow
 
 Sample contents:
 
- * **New feature:** Awesome new feature in this version (#4)
- * **Bug fix:** Fixed annoying bug (#5)
- * **Security improvement:** Updated dependencies to fix security issue (#6)
+ * **New feature:** Awesome new feature in this version (https://github.com/ba32107/browser-extension-sample/pull/4)
+ * **Bug fix:** Fixed annoying bug (https://github.com/ba32107/browser-extension-sample/pull/5)
+ * **Security improvement:** Updated dependencies to fix security issue (https://github.com/ba32107/browser-extension-sample/pull/6)
  

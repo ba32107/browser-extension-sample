@@ -1,5 +1,5 @@
 import logger from "loglevel"
-import IsProduction from "./env"
+import IsProduction from "../util/env"
 
 logger.setLevel(IsProduction ? "silent" : "debug")
 

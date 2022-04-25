@@ -5,6 +5,7 @@ A simple browser extension skeleton for Chrome-based browsers and Firefox.
 Features:
  * Popup, content script, background script, and settings skeleton
  * Logger module
+ * Debug info module
  * Automatic versioning
  * ESLint integration
  * Dev and build scripts for Chrome & Firefox

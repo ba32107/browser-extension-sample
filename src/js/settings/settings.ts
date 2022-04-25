@@ -1,16 +1,16 @@
 import * as browser from "webextension-polyfill"
 
 export interface ISettings {
-    option1: boolean,
-    option2: string
+    myBooleanSetting: boolean,
+    myStringSetting: string,
 }
 
 const DefaultSettings: ISettings = {
-    option1: true,
-    option2: "defaultValue",
+    myBooleanSetting: true,
+    myStringSetting: "Sample setting value",
 }
 
-export async function getSettings(): Promise<ISettings> {
+export async function getSettings() : Promise<ISettings> {
     const settings = (await browser.storage.sync.get(["settings"])).settings
 
     if (!settings) {
@@ -20,8 +20,8 @@ export async function getSettings(): Promise<ISettings> {
     loadMissingKeysFromDefault(settings)
 
     return {
-        option1: settings.option1,
-        option2: settings.option2
+        myBooleanSetting: settings.myBooleanSetting,
+        myStringSetting: settings.myStringSetting
     }
 }
 
@@ -36,5 +36,4 @@ function loadMissingKeysFromDefault(settings: any): void {
             settings[key] = value
         }
     }
-
 }

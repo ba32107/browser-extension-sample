@@ -1,24 +1,26 @@
 import * as browser from "webextension-polyfill"
-import logger from "./logger"
-import { getSettings, ISettings, saveSettings } from "./settings"
+import { ISettings, getSettings, saveSettings } from "./settings/settings"
+import getDebugInfo from "./util/debugInfo"
+import logger from "./logging/logger"
 
-const option1Checkbox = document.getElementById("option1Checkbox") as HTMLInputElement
-const option2TextField = document.getElementById("option2TextField") as HTMLInputElement
+const myBooleanSetting = document.getElementById("myBooleanSetting") as HTMLInputElement
+const myStringSetting = document.getElementById("myStringSetting") as HTMLInputElement
 const saveButton = document.getElementById("saveButton") as HTMLButtonElement
+const debugInfoButton = document.getElementById("debugInfoButton") as HTMLButtonElement
 
-window.onload = async function () {
-    const settings = await getSettings()
+window.onload = async function() {
+    const settings: ISettings = await getSettings()
 
-    option1Checkbox.checked = settings.option1
-    option2TextField.value = settings.option2
+    myBooleanSetting.checked = settings.myBooleanSetting
+    myStringSetting.value = settings.myStringSetting
 }
 
 saveButton.onclick = async function () {
-    logger.info("Save button clicked")
+    logger.info("Saving settings")
 
     const newSettings: ISettings = {
-        option1: option1Checkbox.checked,
-        option2: option2TextField.value
+        myBooleanSetting: myBooleanSetting.checked,
+        myStringSetting: myStringSetting.value,
     }
 
     await saveSettings(newSettings)
@@ -29,4 +31,9 @@ saveButton.onclick = async function () {
         title: "Browser extension template",
         message: "Settings saved"
     })
+}
+
+debugInfoButton.onclick = async function() {
+    const debugInfo = await getDebugInfo()
+    await navigator.clipboard.writeText(debugInfo)
 }

@@ -1,0 +1,31 @@
+name: Release extension
+
+on:
+  workflow_dispatch:
+    inputs:
+     release_notes:
+        description: 'Release notes'
+        required: true 
+        type: string
+
+jobs:
+  release-extension:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Install dependencies
+      run: npm install
+    - name: Build & package extension for Chrome
+      run: npm run dist
+    - name: Release extension for Chrome
+      run: echo "TODO"
+    - name: Build & package extension for Firefox
+      run: npm run dist-ff
+    - name: Release extension for Firefox
+      run: echo "TODO"
+    - name: Create GitHub Release
+      run: echo ${{ github.event.inputs.release_notes }}
+    

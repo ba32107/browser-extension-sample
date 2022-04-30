@@ -1,6 +1,6 @@
-import * as browser from "webextension-polyfill"
-import { ISettings, getSettings } from "../settings/settings"
-import GitCommitHash from "./buildInfo"
+import * as browser from 'webextension-polyfill'
+import { ISettings, getSettings } from '../settings/settings'
+import GitCommitHash from './buildInfo'
 
 interface EnvInfo {
     extensionVersion: string,

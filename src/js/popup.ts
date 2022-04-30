@@ -1,12 +1,12 @@
-import * as browser from "webextension-polyfill"
-import { ISettings, getSettings, saveSettings } from "./settings/settings"
-import getDebugInfo from "./util/debugInfo"
-import logger from "./logging/logger"
+import * as browser from 'webextension-polyfill'
+import { ISettings, getSettings, saveSettings } from './settings/settings'
+import getDebugInfo from './util/debugInfo'
+import logger from './logging/logger'
 
-const myBooleanSetting = document.getElementById("myBooleanSetting") as HTMLInputElement
-const myStringSetting = document.getElementById("myStringSetting") as HTMLInputElement
-const saveButton = document.getElementById("saveButton") as HTMLButtonElement
-const debugInfoButton = document.getElementById("debugInfoButton") as HTMLButtonElement
+const myBooleanSetting = document.getElementById('myBooleanSetting') as HTMLInputElement
+const myStringSetting = document.getElementById('myStringSetting') as HTMLInputElement
+const saveButton = document.getElementById('saveButton') as HTMLButtonElement
+const debugInfoButton = document.getElementById('debugInfoButton') as HTMLButtonElement
 
 window.onload = async function() {
     const settings: ISettings = await getSettings()
@@ -16,7 +16,7 @@ window.onload = async function() {
 }
 
 saveButton.onclick = async function () {
-    logger.info("Saving settings")
+    logger.info('Saving settings')
 
     const newSettings: ISettings = {
         myBooleanSetting: myBooleanSetting.checked,
@@ -26,10 +26,10 @@ saveButton.onclick = async function () {
     await saveSettings(newSettings)
 
     browser.notifications.create(undefined, {
-        type: "basic",
-        iconUrl: "icon32.png",
-        title: "Browser extension template",
-        message: "Settings saved"
+        type: 'basic',
+        iconUrl: 'icon32.png',
+        title: 'Browser extension template',
+        message: 'Settings saved'
     })
 }
 

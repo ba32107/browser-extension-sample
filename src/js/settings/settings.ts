@@ -1,4 +1,4 @@
-import * as browser from "webextension-polyfill"
+import * as browser from 'webextension-polyfill'
 
 export interface ISettings {
     myBooleanSetting: boolean,
@@ -7,11 +7,11 @@ export interface ISettings {
 
 const DefaultSettings: ISettings = {
     myBooleanSetting: true,
-    myStringSetting: "Sample setting value",
+    myStringSetting: 'Sample setting value',
 }
 
 export async function getSettings() : Promise<ISettings> {
-    const settings = (await browser.storage.sync.get(["settings"])).settings
+    const settings = (await browser.storage.sync.get(['settings'])).settings
 
     if (!settings) {
         return DefaultSettings

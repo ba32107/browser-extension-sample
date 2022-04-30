@@ -4,7 +4,7 @@ import GitCommitHash from './util/buildInfo'
 import * as env from './util/env'
 
 async function startup() {
-    logger.info(`Extension started. Commit hash: ${GitCommitHash}, dev build: ${await env.isDevEnv()}, is Firefox: ${await env.isFirefox()}`)
+    logger.info(`Extension started. Commit hash: ${GitCommitHash}, is production: ${env.IsProduction}, is Firefox: ${await env.isFirefox()}`)
 }
 
 browser.runtime.onInstalled.addListener(async () => {

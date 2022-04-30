@@ -1,6 +1,6 @@
-import * as browser from 'webextension-polyfill'
 import { ISettings, getSettings } from '../settings/settings'
 import GitCommitHash from './buildInfo'
+import { getOperatingSystem, getVersion } from './env'
 
 interface EnvInfo {
     extensionVersion: string,
@@ -13,13 +13,13 @@ type DebugInfo = EnvInfo & {
     settings: ISettings,
 }
 
-export default async function getDebugInfo() {
+export default async function getDebugInfo(): Promise<string> {
     const settings: ISettings = await getSettings()
 
     const envInfo: EnvInfo = {
-        extensionVersion: browser.runtime.getManifest().version,
+        extensionVersion: getVersion(),
         gitCommitHash: GitCommitHash,
-        os: (await browser.runtime.getPlatformInfo()).os,
+        os: await getOperatingSystem(),
         userAgent: window.navigator.userAgent,
     }
 
